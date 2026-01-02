@@ -1,151 +1,85 @@
-import { useState } from 'react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import { Save } from 'lucide-react';
+import { User, Mail, School, MapPin, Edit2 } from 'lucide-react';
+import { engineeredData } from '../data/dummyData';
 
 const ProfilePage = () => {
-    const [formData, setFormData] = useState({
-        percent10: '',
-        percent12: '',
-        percentPCM: '',
-        strongSubject: 'Maths',
-        interests: {
-            coding: false,
-            robotics: false,
-            electronics: false,
-            mechanics: false,
-            design: false,
-            management: false,
-        },
-        careerPreference: 'Software'
-    });
-
-    const handleInterestChange = (interest) => {
-        setFormData(prev => ({
-            ...prev,
-            interests: {
-                ...prev.interests,
-                [interest]: !prev.interests[interest]
-            }
-        }));
-    };
-
-    const handleSave = (e) => {
-        e.preventDefault();
-        alert("Profile Saved!");
-        // Logic to save profile would go here
-    };
+    const student = engineeredData.student;
 
     return (
-        <div className="min-h-screen flex flex-col bg-slate-50">
-            <Navbar />
-            <main className="flex-grow max-w-4xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10">
-                <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-                    <div className="px-6 py-4 border-b border-slate-200 bg-slate-50">
-                        <h2 className="text-xl font-bold text-slate-900">Student Profile</h2>
-                        <p className="text-sm text-slate-500">Update your academic details to get better recommendations.</p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            {/* Profile Header Card */}
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-8">
+                <div className="h-32 bg-gradient-to-r from-blue-500 to-indigo-600"></div>
+                <div className="px-8 pb-8">
+                    <div className="relative flex justify-between items-end -mt-12 mb-6">
+                        <div className="p-1 bg-white rounded-full">
+                            <div className="h-24 w-24 rounded-full bg-slate-200 flex items-center justify-center text-slate-400 border-4 border-white">
+                                <User className="h-12 w-12" />
+                            </div>
+                        </div>
+                        <button className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-300 rounded-lg text-slate-700 font-medium hover:bg-slate-50 transition-colors shadow-sm">
+                            <Edit2 className="h-4 w-4" />
+                            Edit Profile
+                        </button>
                     </div>
 
-                    <form onSubmit={handleSave} className="p-6 space-y-8">
-                        {/* Basic Academic Info */}
-                        <div>
-                            <h3 className="text-lg font-medium text-slate-900 mb-4 border-b pb-2">Academic Performance</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                <div>
-                                    <label className="block text-sm font-medium text-slate-700 mb-1">10th Percentage</label>
-                                    <input
-                                        type="number"
-                                        min="0" max="100"
-                                        className="w-full rounded-lg border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border"
-                                        value={formData.percent10}
-                                        onChange={(e) => setFormData({ ...formData, percent10: e.target.value })}
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-slate-700 mb-1">12th Percentage</label>
-                                    <input
-                                        type="number"
-                                        min="0" max="100"
-                                        className="w-full rounded-lg border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border"
-                                        value={formData.percent12}
-                                        onChange={(e) => setFormData({ ...formData, percent12: e.target.value })}
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-slate-700 mb-1">PCM Percentage</label>
-                                    <input
-                                        type="number"
-                                        min="0" max="100"
-                                        className="w-full rounded-lg border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border"
-                                        value={formData.percentPCM}
-                                        onChange={(e) => setFormData({ ...formData, percentPCM: e.target.value })}
-                                    />
-                                </div>
-                            </div>
+                    <div>
+                        <h1 className="text-3xl font-bold text-slate-900">{student.name}</h1>
+                        <p className="text-slate-500 text-lg">Engineering Student</p>
+                    </div>
+
+                    <div className="mt-6 flex flex-wrap gap-6 text-slate-600">
+                        <div className="flex items-center gap-2">
+                            <School className="h-5 w-5 text-slate-400" />
+                            <span>{student.education.board12}</span>
                         </div>
-
-                        {/* Preferences */}
-                        <div>
-                            <h3 className="text-lg font-medium text-slate-900 mb-4 border-b pb-2">Preferences & Skills</h3>
-
-                            <div className="mb-6">
-                                <label className="block text-sm font-medium text-slate-700 mb-2">Strongest Subject</label>
-                                <select
-                                    className="w-full md:w-1/3 rounded-lg border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border"
-                                    value={formData.strongSubject}
-                                    onChange={(e) => setFormData({ ...formData, strongSubject: e.target.value })}
-                                >
-                                    <option>Maths</option>
-                                    <option>Physics</option>
-                                    <option>Chemistry</option>
-                                </select>
-                            </div>
-
-                            <div className="mb-6">
-                                <label className="block text-sm font-medium text-slate-700 mb-3">Areas of Interest</label>
-                                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                                    {Object.keys(formData.interests).map((interest) => (
-                                        <label key={interest} className="inline-flex items-center space-x-2 cursor-pointer">
-                                            <input
-                                                type="checkbox"
-                                                className="rounded text-blue-600 focus:ring-blue-500 h-4 w-4 border-gray-300"
-                                                checked={formData.interests[interest]}
-                                                onChange={() => handleInterestChange(interest)}
-                                            />
-                                            <span className="text-slate-700 capitalize">{interest}</span>
-                                        </label>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-2">Primary Career Preference</label>
-                                <select
-                                    className="w-full md:w-1/3 rounded-lg border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border"
-                                    value={formData.careerPreference}
-                                    onChange={(e) => setFormData({ ...formData, careerPreference: e.target.value })}
-                                >
-                                    <option>Software Development</option>
-                                    <option>Core Engineering (Mech/Elec)</option>
-                                    <option>Research & R&D</option>
-                                    <option>Management / MBA focus</option>
-                                </select>
-                            </div>
+                        <div className="flex items-center gap-2">
+                            <MapPin className="h-5 w-5 text-slate-400" />
+                            <span>Mumbai, India</span>
                         </div>
-
-                        <div className="pt-4 flex justify-end">
-                            <button
-                                type="submit"
-                                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                            >
-                                <Save className="mr-2 -ml-1 h-5 w-5" />
-                                Save Profile
-                            </button>
+                        <div className="flex items-center gap-2">
+                            <Mail className="h-5 w-5 text-slate-400" />
+                            <span>student@example.com</span>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </main>
-            <Footer />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Academic Info */}
+                <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                    <h2 className="text-lg font-bold text-slate-900 mb-4">Academic Background</h2>
+                    <div className="space-y-4">
+                        <div className="flex justify-between items-center py-3 border-b border-slate-100 last:border-0">
+                            <span className="text-slate-500">10th Grade Score</span>
+                            <span className="font-semibold text-slate-900">{student.education.marks10}</span>
+                        </div>
+                        <div className="flex justify-between items-center py-3 border-b border-slate-100 last:border-0">
+                            <span className="text-slate-500">12th Grade Score</span>
+                            <span className="font-semibold text-slate-900">{student.education.marks12}</span>
+                        </div>
+                        <div className="flex justify-between items-center py-3 border-b border-slate-100 last:border-0">
+                            <span className="text-slate-500">CET Score</span>
+                            <span className="font-semibold text-slate-900">{student.examScores.cet}</span>
+                        </div>
+                        <div className="flex justify-between items-center py-3 border-b border-slate-100 last:border-0">
+                            <span className="text-slate-500">JEE Mains Score</span>
+                            <span className="font-semibold text-slate-900">{student.examScores.jee}</span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Interests */}
+                <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                    <h2 className="text-lg font-bold text-slate-900 mb-4">Interests</h2>
+                    <div className="flex flex-wrap gap-2">
+                        {student.interests.map((interest, idx) => (
+                            <span key={idx} className="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm font-medium">
+                                {interest}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
