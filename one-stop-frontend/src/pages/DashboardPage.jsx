@@ -1,11 +1,13 @@
+
 import RecommendationCard from '../components/RecommendationCard';
 import InternshipCard from '../components/InternshipCard';
 import SkillBadge from '../components/SkillBadge';
 import RoadmapTimeline from '../components/RoadmapTimeline';
 import StatsOverview from '../components/StatsOverview';
 import ActivityFeed from '../components/ActivityFeed';
+import ResumeBuilder from '../components/ResumeBuilder'; // Import ResumeBuilder
 import { engineeredData } from '../data/dummyData';
-import { Lightbulb, Target, Briefcase, TrendingUp, Calendar, BookOpen, ExternalLink } from 'lucide-react';
+import { Lightbulb, Target, Briefcase, TrendingUp, Calendar, BookOpen, ExternalLink, FileText } from 'lucide-react';
 
 const DashboardPage = () => {
     return (
@@ -19,6 +21,40 @@ const DashboardPage = () => {
 
             {/* Stats Overview */}
             <StatsOverview />
+
+            {/* Resume Builder Section */}
+            <section className="bg-slate-50 rounded-xl p-6 border border-slate-200">
+                <div className="flex items-center gap-2 mb-6">
+                    <FileText className="text-blue-600 h-6 w-6" />
+                    <h2 className="text-xl font-bold text-slate-800">Resume Builder</h2>
+                </div>
+                {/* 
+                  Passing dummy profile data for now. 
+                  In a real app, this would come from your auth context or API.
+                */}
+                <ResumeBuilder
+                    userProfile={{
+                        name: "Aditya Kumar",
+                        role: "Aspiring Software Engineer",
+                        email: "aditya.kumar@example.com",
+                        phone: "+91 98765 43210",
+                        location: "Bangalore, India",
+                        linkedin: "linkedin.com/in/aditya-kumar",
+                        skills: engineeredData.skills.required, // Reusing skills from dummy data
+                        experience: [
+                            {
+                                role: "Frontend Intern",
+                                company: "TechStartups.io",
+                                duration: "May 2024 - July 2024",
+                                points: [
+                                    "Built reusable React components for the main dashboard.",
+                                    "Improved site performance by optimizing images and scripts."
+                                ]
+                            }
+                        ]
+                    }}
+                />
+            </section>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
