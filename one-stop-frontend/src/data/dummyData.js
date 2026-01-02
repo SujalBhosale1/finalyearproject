@@ -74,5 +74,18 @@ export const engineeredData = {
             description: "Build 3 major projects and deploy them. Update resume.",
             resources: ["Youtube Tutorials", "GitHub"]
         }
-    ]
+    ],
+    student: {
+        name: "Aditya Kumar",
+        education: {
+            marks10: "92%",
+            marks12: "89%",
+            board12: "CBSE"
+        },
+        examScores: {
+            cet: "98.5 percentile",
+            jee: "95.2 percentile"
+        },
+        interests: ["Robotics", "AI/ML", "Web Development"]
+    }
 };

@@ -17,7 +17,7 @@ const RegisterPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Dummy register logic
-        navigate('/profile'); // Go to profile setup after register
+        navigate('/profile-setup'); // Go to profile setup after register
     };
 
     return (

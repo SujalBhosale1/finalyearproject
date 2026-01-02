@@ -9,6 +9,7 @@ import PaymentPage from './pages/PaymentPage';
 import CreditPage from './pages/CreditPage';
 import HelpPage from './pages/HelpPage';
 import FlowPage from './pages/FlowPage';
+import ProfileSetupPage from './pages/ProfileSetupPage';
 import ChatbotWidget from './components/ChatbotWidget';
 import Layout from './components/Layout';
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/profile-setup" element={<ProfileSetupPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/flow" element={<FlowPage />} />
