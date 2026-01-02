@@ -31,14 +31,14 @@ const Navbar = () => {
                 <div className="flex justify-between h-16">
                     <div className="flex">
                         <Link to="/" className="flex-shrink-0 flex items-center gap-2">
-                            <img src="/logo.svg" alt="OneStop Logo" className="h-8 w-8" />
-                            <span className="text-2xl font-bold text-blue-600 dark:text-blue-400 hidden lg:block">One Stop</span>
+                            {/* Replaced with a simple text-based logo for now, or use an SVG */}
+                            <div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">OS</div>
+                            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent hidden lg:block">OneStop</span>
                         </Link>
                         {/* Desktop Menu */}
-                        <div className="hidden md:ml-6 md:flex md:space-x-6">
+                        <div className="hidden md:ml-6 md:flex md:space-x-4">
                             <NavLink to="/" label="Home" />
-                            <NavLink to="/register" label="Register" />
-                            <NavLink to="/login" label="Login" />
+                            <NavLink to="/flow" label="Flow" />
                             <NavLink to="/dashboard" label="Dashboard" />
                             <NavLink to="/payment" label="Payment" />
                             <NavLink to="/credit" label="Credit" />
@@ -48,7 +48,13 @@ const Navbar = () => {
 
                     <div className="hidden md:ml-6 md:flex md:items-center gap-3">
                         <ThemeToggle />
-                        <Link to="/profile" className="p-2 rounded-full text-gray-400 hover:text-gray-500 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        <Link to="/login" className="px-4 py-2 text-sm font-medium text-slate-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">
+                            Login
+                        </Link>
+                        <Link to="/register" className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors shadow-sm">
+                            Register
+                        </Link>
+                        <Link to="/profile" className="ml-2 p-2 rounded-full text-gray-400 hover:text-gray-500 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                             <User className="h-6 w-6" />
                         </Link>
                     </div>
@@ -71,8 +77,9 @@ const Navbar = () => {
                 <div className="md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
                     <div className="pt-2 pb-3 space-y-1">
                         <NavLink to="/" label="Home" mobile />
-                        <NavLink to="/register" label="Register" mobile />
+                        <NavLink to="/flow" label="Flow" mobile />
                         <NavLink to="/login" label="Login" mobile />
+                        <NavLink to="/register" label="Register" mobile />
                         <NavLink to="/dashboard" label="Dashboard" mobile />
                         <NavLink to="/payment" label="Payment" mobile />
                         <NavLink to="/credit" label="Credit" mobile />
