@@ -10,21 +10,24 @@ import CreditPage from './pages/CreditPage';
 import HelpPage from './pages/HelpPage';
 import FlowPage from './pages/FlowPage';
 import ChatbotWidget from './components/ChatbotWidget';
+import Layout from './components/Layout';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/flow" element={<FlowPage />} />
-        <Route path="/progress" element={<ProgressPage />} />
-        <Route path="/payment" element={<PaymentPage />} />
-        <Route path="/credit" element={<CreditPage />} />
-        <Route path="/help" element={<HelpPage />} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/flow" element={<FlowPage />} />
+          <Route path="/progress" element={<ProgressPage />} />
+          <Route path="/payment" element={<PaymentPage />} />
+          <Route path="/credit" element={<CreditPage />} />
+          <Route path="/help" element={<HelpPage />} />
+        </Route>
       </Routes>
       <ChatbotWidget />
     </BrowserRouter>

@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
 import FeatureCard from '../components/FeatureCard';
 import FAQ from '../components/FAQ';
-import Footer from '../components/Footer';
 import { Compass, BookOpen, Briefcase, Map, Star, Users, TrendingUp, Zap } from 'lucide-react';
 
 const LandingPage = () => {
     return (
-        <div className="bg-slate-50 min-h-screen flex flex-col font-sans">
+        <div className="flex flex-col font-sans">
             {/* Hero Section */}
             <div className="relative bg-white overflow-hidden">
                 <div className="absolute inset-0">
@@ -126,9 +125,6 @@ const LandingPage = () => {
                     </Link>
                 </div>
             </div>
-
-            {/* Footer */}
-            <Footer />
         </div>
     );
 };
