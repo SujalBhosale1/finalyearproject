@@ -6,10 +6,33 @@ import RoadmapTimeline from '../components/RoadmapTimeline';
 import StatsOverview from '../components/StatsOverview';
 import ActivityFeed from '../components/ActivityFeed';
 import ResumeBuilder from '../components/ResumeBuilder'; // Import ResumeBuilder
+import ProjectIdeaGenerator from '../components/ProjectIdeaGenerator';
 import { engineeredData } from '../data/dummyData';
 import { Lightbulb, Target, Briefcase, TrendingUp, Calendar, BookOpen, ExternalLink, FileText } from 'lucide-react';
 
 const DashboardPage = () => {
+    // Mock User Profile Data
+    const userProfile = {
+        name: "Aditya Kumar",
+        role: "Aspiring Software Engineer",
+        email: "aditya.kumar@example.com",
+        phone: "+91 98765 43210",
+        location: "Bangalore, India",
+        linkedin: "linkedin.com/in/aditya-kumar",
+        skills: engineeredData.skills.required,
+        experience: [
+            {
+                role: "Frontend Intern",
+                company: "TechStartups.io",
+                duration: "May 2024 - July 2024",
+                points: [
+                    "Built reusable React components for the main dashboard.",
+                    "Improved site performance by optimizing images and scripts."
+                ]
+            }
+        ]
+    };
+
     return (
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
@@ -33,26 +56,7 @@ const DashboardPage = () => {
                   In a real app, this would come from your auth context or API.
                 */}
                 <ResumeBuilder
-                    userProfile={{
-                        name: "Aditya Kumar",
-                        role: "Aspiring Software Engineer",
-                        email: "aditya.kumar@example.com",
-                        phone: "+91 98765 43210",
-                        location: "Bangalore, India",
-                        linkedin: "linkedin.com/in/aditya-kumar",
-                        skills: engineeredData.skills.required, // Reusing skills from dummy data
-                        experience: [
-                            {
-                                role: "Frontend Intern",
-                                company: "TechStartups.io",
-                                duration: "May 2024 - July 2024",
-                                points: [
-                                    "Built reusable React components for the main dashboard.",
-                                    "Improved site performance by optimizing images and scripts."
-                                ]
-                            }
-                        ]
-                    }}
+                    userProfile={userProfile}
                 />
             </section>
 
@@ -96,10 +100,17 @@ const DashboardPage = () => {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {engineeredData.internships.map((internship) => (
-                                <InternshipCard key={internship.id} {...internship} />
+                                <InternshipCard
+                                    key={internship.id}
+                                    {...internship}
+                                    userProfile={userProfile}
+                                />
                             ))}
                         </div>
                     </section>
+
+                    {/* Section: Project Idea Generator */}
+                    <ProjectIdeaGenerator userSkills={userProfile.skills} />
 
                 </div>
 
